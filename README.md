@@ -1,5 +1,3 @@
-## 📂 api-repo/README.md
-
 # JLabs API (SQLite)
 
 A Node.js + Express API using better-sqlite3 for simple, file‑based local storage.  
@@ -20,12 +18,13 @@ Handles user registration, login (with bcrypt password hashing), and fetching th
    cd api-repo
 
 2. **Install dependencies**
-    bash
+    ```bash
     npm install
     npm install --save-dev nodemon   # ensures dev script works everywhere
 
 3. **Environment variables** 
 Create a .env file in the root:
+    ```bash
     PORT=4000
     JWT_SECRET=change_me
     FRONTEND_ORIGIN=http://localhost:5173
@@ -36,6 +35,7 @@ Create a .env file in the root:
     The API will create necessary tables/data on first run.
 
 5. **Run the API**
+    ```bash
     npm run dev
 The server will start at: http://localhost:4000
 
@@ -43,12 +43,14 @@ The server will start at: http://localhost:4000
 
 ## 🧪 Test User (if seeded in code)
 If your app seeds a default account on startup:
+    ```bash
     Email: test@example.com
     Password: Password123!
 
 ---
 
 ## 📚 API Endpoints
+    ```bash
     POST /auth/register → { token, user }
     POST /auth/login → { token, user }
     GET /auth/me → { user } (requires Authorization: Bearer <token>)
