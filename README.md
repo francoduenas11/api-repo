@@ -1,53 +1,61 @@
-# JLabs API (Node + Express)
+## 📂 api-repo/README.md
 
-A minimal auth API for Register, Login, and Me endpoints with SQLite (dev) and Postgres (prod).
+# JLabs API (SQLite)
 
-## Features
-- Register, Login, Me
-- Bcrypt password hashing
-- JWT auth (Bearer token)
-- SQLite locally, Postgres in production
-- CORS restricted by origin
+A Node.js + Express API using better-sqlite3 for simple, file‑based local storage.  
+Handles user registration, login (with bcrypt password hashing), and fetching the current user.
 
-## Requirements
-- Node 18.x
+---
 
-## Setup (local dev)
-1. cp .env.example .env
-2. npm install
-3. npm run migrate   # optional, auto-migrate runs on start
-4. npm run seed
-5. npm run dev
+## 📋 Requirements
+- Node.js v18+ (LTS recommended)
 
-Default seed user:
-- Email: test@example.com
-- Password: Password123!
+---
 
-## Environment variables
-- PORT=4000
-- JWT_SECRET=change_me
-- FRONTEND_ORIGIN=http://localhost:5173
-- DATABASE_PATH=./data/dev.db
-- DB_CLIENT=sqlite   # or pg
-- DATABASE_URL=postgres://user:pass@host:port/dbname  # for pg
+## 🚀 Setup & Run (Local)
 
-## Scripts
-- npm run dev
-- npm start
-- npm run migrate
-- npm run seed
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/francoduenas11/api-repo
+   cd api-repo
 
-## Endpoints
-- POST /auth/register { name, email, password } -> { token, user }
-- POST /auth/login { email, password } -> { token, user }
-- GET /auth/me (Authorization: Bearer <token>) -> { user }
+2. **Install dependencies**
+    bash
+    npm install
+    npm install --save-dev nodemon   # ensures dev script works everywhere
 
-## Deployment (production)
-- Set DB_CLIENT=pg and DATABASE_URL
-- Set FRONTEND_ORIGIN to your Vercel web URL
-- Set JWT_SECRET to a strong random value
-- Start: npm start
+3. **Environment variables** 
+Create a .env file in the root:
+    PORT=4000
+    JWT_SECRET=change_me
+    FRONTEND_ORIGIN=http://localhost:5173
+    DATABASE_PATH=./data/dev.db
 
-## Notes on auth
-- Passwords hashed with bcrypt (cost 10)
-- JWT expires in 7 days; store in localStorage for this demo. In production, prefer httpOnly cookies.
+4. **Database setup**
+    No server setup required — SQLite file will be created automatically.
+    The API will create necessary tables/data on first run.
+
+5. **Run the API**
+    npm run dev
+The server will start at: http://localhost:4000
+
+---
+
+## 🧪 Test User (if seeded in code)
+If your app seeds a default account on startup:
+    Email: test@example.com
+    Password: Password123!
+
+---
+
+## 📚 API Endpoints
+    POST /auth/register → { token, user }
+    POST /auth/login → { token, user }
+    GET /auth/me → { user } (requires Authorization: Bearer <token>)
+
+---
+
+## 🔒 Notes
+No external DB server needed — great for quick local testing.
+
+CORS restricted to FRONTEND_ORIGIN from .env.

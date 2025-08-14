@@ -2,7 +2,6 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import authRouter from './routes/auth.js';
-import { initDb } from './db.js';
 
 dotenv.config();
 
@@ -20,22 +19,18 @@ app.use(
   })
 );
 
-app.get('/health', (_req, res) => res.json({ status: 'ok' }));
+app.get('/health', (_req, res) => {
+  res.json({ status: 'ok' });
+});
 
 app.use('/auth', authRouter);
 
+// Centralized error handler
 app.use((err, _req, res, _next) => {
   console.error(err);
   res.status(err.status || 500).json({ error: err.message || 'Server error' });
 });
 
-initDb()
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`API listening on http://localhost:${PORT}`);
-    });
-  })
-  .catch((e) => {
-    console.error('DB init failed', e);
-    process.exit(1);
-  });
+app.listen(PORT, () => {
+  console.log(`API listening on http://localhost:${PORT}`);
+});
