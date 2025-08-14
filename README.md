@@ -31,8 +31,8 @@ Create a .env file in the root:
     DATABASE_PATH=./data/dev.db
 
 4. **Database setup**
-    No server setup required — SQLite file will be created automatically.
-    The API will create necessary tables/data on first run.
+No server setup required — SQLite file will be created automatically.
+The API will create necessary tables/data on first run.
 
 5. **Run the API**
     ```bash
@@ -43,17 +43,15 @@ The server will start at: http://localhost:4000
 
 ## 🧪 Test User (if seeded in code)
 If your app seeds a default account on startup:
-    ```bash
-    Email: test@example.com
-    Password: Password123!
+Email: test@example.com
+Password: Password123!
 
 ---
 
 ## 📚 API Endpoints
-    ```bash
-    POST /auth/register → { token, user }
-    POST /auth/login → { token, user }
-    GET /auth/me → { user } (requires Authorization: Bearer <token>)
+POST /auth/register → { token, user }
+POST /auth/login → { token, user }
+GET /auth/me → { user } (requires Authorization: Bearer <token>)
 
 ---
 
